@@ -8,7 +8,7 @@ let package = Package(
     platforms: [.macOS(.v13)],
     products: [
         .library(name: "CodeSketch", targets: ["CodeSketch"]),
-        //.plugin(name: "MakeCodeSketch", targets: ["MakeCodeSketch"])
+        .plugin(name: "MakeCodeSketch", targets: ["MakeCodeSketch"])
     ],
     targets: [
         .target(
