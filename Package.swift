@@ -18,8 +18,8 @@ let package = Package(
         .plugin(
             name: "MakeCodeSketch",
             capability: .command(intent: .custom(verb: "make-sketch", 
-                                                 description: "Create an new code sketch"), 
-                                                 permissions: [.writeToPackageDirectory(reason: "This plugin creates a new code sketch file.")])
+                                                 description: "Create an new code sketch"),
+                                 permissions: [.writeToPackageDirectory(reason: "This plugin creates a new code sketch file.")])
         )
     ]
 )
