@@ -39,14 +39,15 @@ struct TellMeAboutYourself: CommandPlugin {
         
         //Nope. No plugins in here.
         let targets = context.package.targets
-        let targetDirectories = targets.map({"\nsourceDirectory for \($0.name): \($0.directory)"})
+        let targetDirectories = targets.map({"\ndirectory for \($0.name): \($0.directory)"})
         for dir in targetDirectories {
             message.append(dir)
         }
-        
-        //message.append("\nsourceModules: \(context.package.sourceModules)")
-        //message.append("\nproducts:\(context.package.products)")
-        //message.append("\ntargets:\(context.package.targets)")
+        message.append("\n\n\n--------------------------------------------------------------------")
+        message.append("\nFULL DUMP")
+        message.append("\nsourceModules: \(context.package.sourceModules)")
+        message.append("\nproducts:\(context.package.products)")
+        message.append("\ntargets:\(context.package.targets)")
         
         
         
