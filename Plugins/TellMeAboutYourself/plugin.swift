@@ -1,10 +1,3 @@
-//
-//  File.swift
-//
-//
-//  Created by Carlyn on 1/14/24.
-//
-
 import PackagePlugin
 import Foundation
 
@@ -20,7 +13,7 @@ struct TellMeAboutYourself: CommandPlugin {
         message.append("\narguments:\(arguments)")
         var argExtractor = ArgumentExtractor(arguments)
         let targetNames = argExtractor.extractOption(named: "target")
-        
+        message.append("\nextracted names:\(targetNames)")
         
         message.append("\n\nContext Info")
         message.append("\nworkDirectory: \(context.pluginWorkDirectory)")
@@ -34,11 +27,13 @@ struct TellMeAboutYourself: CommandPlugin {
         
         //https://github.com/apple/swift-package-manager/blob/4b7ee3e328dc8e7bec33d4d5d401d37abead6e41/Sources/PackageModel/Target/PluginTarget.swift#L13
         //Cannot find 'PluginTarget' in scope
-        //SwiftSourceModuleTarget.self does work.
+        //SwiftSourceModuleTarget.self does work. Not sure what else would yet.
         //let specialTargets = context.package.targets(ofType: PluginTarget.self)
         
         //Nope. No plugins in here.
         let targets = context.package.targets
+        //FWIW not even if you asked for them explicitly with something like:
+        //let targets = try context.package.targets(named: targetNames)
         let targetDirectories = targets.map({"\ndirectory for \($0.name): \($0.directory)"})
         for dir in targetDirectories {
             message.append(dir)
@@ -59,4 +54,3 @@ struct TellMeAboutYourself: CommandPlugin {
         try content.write(toFile: location.string, atomically: true, encoding: .utf8)
     }
 }
-
